@@ -1,4 +1,6 @@
 var Room = require('./room');
+var config = require('./config/config.json');
+var baseUrl = config.base_url;
 var express = require('express');
 var app = express();
 var baseUrl = "172.23.0.131:3000";
