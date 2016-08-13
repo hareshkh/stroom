@@ -2,6 +2,7 @@ function Room(name) {
   this.name = name;
   this.strength = 0;
   this.active = false;
+  this.playersHandle = {};
 }
 Room.rooms = {};
 Room.allocateFirst = function(socket, id) {
@@ -12,11 +13,10 @@ Room.allocateFirst = function(socket, id) {
       room.name = id;
       room.strength = 1;
       socket.join(room.name);
-      room.players[room.strength-1]=socket.id;
       socket.room = room;
       return room;
-}
-Room.allocateOther= function(socket, id) {
+};
+Room.allocateOther = function(socket, id) {
   console.log("allocating other");
   var rooms = Room.rooms;
     if(rooms[id] === null)
@@ -31,4 +31,5 @@ Room.allocateOther= function(socket, id) {
     socket.room= room;
     room.active = true;
     return room;
-}
+};
+module.exports = Room;

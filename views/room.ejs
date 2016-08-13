@@ -1,19 +1,10 @@
-<script type="text/javascript">
-	var socket = io.connect();
-
-        socket.on('connect', function () {
-            alert('connect');
-             socket.on('alertLink', function(msg){
-             	console.log('1');
-		    alertLink("Give This Link To Your Friend", msg, true);
-  			});
-        });
- socket.on('alertLink', function(msg){
- 	console.log('2');
-    alertLink("Give This Link To Your Friend", msg, true);
-  });
-
-
+<script type="text/javascript">	
+var socket = io();
+var link ="";
+socket.on('alertLink', function(msg){
+	this.link = msg;
+	console.log(msg);
+});
 </script>
 <div>
 		<center>Room</center>
@@ -21,6 +12,7 @@
 <br><br>
 <center>
 		<br>
-		<p> Welcome to the room </p>
+		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
+		<script type="text/javascript">echo(link);</script>
 </div>
 </center>
