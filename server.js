@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 console.log(__dirname);
 app.get( '/', function(req, res) {
-	res.render('arena');
+	res.render('index');
 });
 app.get( '/create/room', function(req, res) {
 	res.render('room');
