@@ -4,25 +4,64 @@
   <!-- note: for support on older browsers, you will need to load es5-shim and es6-shim -->
   <script src="es5-shim.min.js"></script> 
   <script src="es6-shim.min.js"></script> 
- 
-  <script src="/timesync/timesync.js"></script> 
+  <script src="/timesync/timesync.js"></script>
+  <script>
+    // create a timesync instance 
+    var ts = timesync.create({
+      server: '/timesync',
+      interval: 10000
+    });
+   
+    // get notified on changes in the offset 
+    ts.on('change', function (offset) {
+      document.write('changed offset: ' + offset + ' ms<br>');
+    });
+   
+    // get synchronized time 
+    setInterval(function () {
+      var now = new Date(ts.now());
+      document.write('now: ' + now.toISOString() + ' ms<br>');
+    }, 1000);
+  </script>
+  
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script>
+    var socket = io();
+    var starttime;
+
+    var p;
+    SC.initialize({
+      client_id: '8a73a4efdb1f7a965c562f75716551ee'
+    });
+
+    SC.stream('/tracks/235152782').then(function(player){
+      p= player;
+    });
+
+    function play() {
+      var now = new Date(ts.now());
+      socket.emit('startsetter',now)
+      socket.on('start',function(msg) {
+        starttime = msg;
+      })
+      p.play();
+      p.on('buffering_end',function() {
+        sync();
+      })
+    }
+    function pause() {
+      p.pause();
+    }
+    function sync() {
+      var now = ts.now();
+      p.seek(Math.abs(now.getTime() - starttime.getTime());)
+    }
+  </script> 
+
 </head>
-<script>
-  // create a timesync instance 
-  var ts = timesync.create({
-    server: '/timesync',
-    interval: 10000
-  });
- 
-  // get notified on changes in the offset 
-  ts.on('change', function (offset) {
-    document.write('changed offset: ' + offset + ' ms<br>');
-  });
- 
-  // get synchronized time 
-  setInterval(function () {
-    var now = new Date(ts.now());
-    document.write('now: ' + now.toISOString() + ' ms<br>');
-  }, 1000);
-</script> 
+<body>
+  <button id='play' onclick="play()">Play</button>
+  <button id='sync' onclick="sync()">Sync</button>
+  <button id='pause' onclick="pause()">Pause</button>
+<body>
 </html>
