@@ -1,9 +1,8 @@
 <script type="text/javascript">	
 var socket = io();
-var link ="";
 socket.on('alertLink', function(msg){
-	this.link = msg;
 	console.log(msg);
+	document.getElementById('link').innerHTML = msg;
 });
 </script>
 <div>
@@ -13,6 +12,6 @@ socket.on('alertLink', function(msg){
 <center>
 		<br>
 		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
-		<script type="text/javascript">echo(link);</script>
+		<p id="link"></p>
 </div>
 </center>
