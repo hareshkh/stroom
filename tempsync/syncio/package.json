@@ -1,0 +1,16 @@
+{
+  "name": "syncio",
+  "version": "0.0.1",
+  "description": "timesync",
+  "main": "index.html",
+  "dependencies": {
+  	"express": "^4.14.0",
+  	"timesync": "0.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
