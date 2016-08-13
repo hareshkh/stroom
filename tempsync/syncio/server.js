@@ -4,12 +4,14 @@ var express = require('express');
 var timesyncServer = require('timesync/server');
  
 // create an express app 
-var port = 8081;
+var port = 3000;
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-app.listen(port);
-console.log('Server listening at http://localhost:' + port);
+app.set('port',(process.env.PORT||3000));
+http.listen (app.get('port'),function() {
+  console.log("listening to port number "+app.get('port'));
+});
  
 // serve static index.html 
 app.get('/', express.static(__dirname));
