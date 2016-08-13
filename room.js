@@ -3,6 +3,7 @@ function Room(name) {
   this.strength = 0;
   this.active = false;
   this.playersHandle = {};
+  this.players = {};
 }
 Room.rooms = {};
 Room.allocateFirst = function(socket, id) {
