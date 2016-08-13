@@ -1,0 +1,167 @@
+@font-face {
+  font-family: "Montserrat-Light";
+  src: url(../util/fonts/Montserrat-Light.ot) format("truetype");
+}
+@font-face {
+  font-family: "SFDistantGalaxyAlternate";
+  src: url(../util/fonts/SFDistantGalaxyAlternate.ttf) format("truetype");
+}
+body {
+    max-width:100%;
+    max-height:100%;
+}
+#help {
+	width:2vw;
+	margin: 0 auto;
+	font-family: "Montserrat-Light";
+	color:yellow;
+	position:relative;bottom:3vw
+}
+#helplink {
+	color:yellow;
+}
+#heading {
+	font-size :5vh;
+    font-family: SFDistantGalaxyAlternate;
+    color:yellow;
+}
+#left {
+	width:25vw;
+    float :left;
+    margin-left: 5vw;
+}
+#right {
+    width:25vw;
+    float:right;
+	margin-right:5vw;
+}
+#center {
+    width:30vw;
+    float:left;
+    margin-left: 3.5vw;
+}
+#leftDown {
+	border: 2px solid white;
+	overflow:auto;
+
+}
+#rightDown {
+	border: 2px solid white;
+	overflow:auto;
+}
+#leftSide {
+	margin-left: 2%;
+	float:left;
+	font-size:80%;
+	font-family: gothic ;
+}
+#rightSide {
+	margin-right: 2%;
+	float:right;
+	font-size:80%;
+	font-family: gothic ;
+}
+#centerText {
+	font-family: gothic;
+}
+#topText {
+	font-family: Montserrat-Light;
+	font-size: 150%;
+}
+.topper {
+	margin-top:2.5vw;
+	font-family: SFDistantGalaxyAlternate;
+	color:#fee234;
+	height:7vw;
+	font-size:8vh;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    background-size:26vw;
+}
+.buttons {
+	margin-top:1vw;
+	font-size : 1vw;
+	height:5vw;width:20vw;
+	background-image: url('../util/images/button.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    font-color:white;
+    font-family : Montserrat-Light;
+}
+@font-face {
+  font-family: "lombok";
+  src: url(../util/fonts/LOMBOK_TYPEFACE/Lombok.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "gothic";
+  src: url(../util/fonts/gothic.ttf) format("truetype");
+}
+
+#leaderboard { 
+	width:40vh;
+	height:12vh;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+#rooms { 
+	width:40vh;
+	height:12vh;
+	background-image: url('/util/images/rightSide.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+#leaderleft {
+	width:30%;
+	float:left;
+	margin-top:2vh;
+}
+#leadercenter {
+	width:45%;
+	float:left;
+	align:left;
+	margin-top:3vh;
+	font-size: 2vh;
+	font-family: Montserrat-Light;
+}
+#leaderright {
+	width:20%;
+	float:left;
+	margin-top:2vh;
+	font-size: 2vh;
+	font-family: Montserrat-Light;
+}
+#ldr {
+	font-family: SFDistantGalaxyAlternate;
+	color:#fee234;
+	font-size :5vh;
+}
+#roomcenter{
+	width:65%;
+	float:left;
+	align:left;
+	margin-top:2vh;
+	font-size: 2vh;
+	font-family: Montserrat-Light;
+}
+#roomleft {
+	width:10%;
+	float:left;
+	align:left;
+	margin-top:2vh;
+	font-size: 2.5vh;
+	font-family: Montserrat-Light;
+}
+
+#roomright {
+	width:19%;
+	float:left;
+	align:left;
+	margin-top:1vh;
+	font-size: 1.5vh;
+	font-family: Montserrat-Light;
+}
