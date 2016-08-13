@@ -1,20 +1,26 @@
-<html>
-	<head>
-		<title>
-			Stroom | Room
-		</title>
-	</head>
-	<body>
-		<div>
-			<center>Room</center>
-		</div>
-		<br><br>
-		<center>
-				<br>
-				<p> Welcome to the room </p>
-		</div>
-		</center>
-	</body>
-	<script src="/js/room.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-</html>
+<script type="text/javascript">
+	var socket = io.connect();
+
+        socket.on('connect', function () {
+            alert('connect');
+             socket.on('alertLink', function(msg){
+             	console.log('1');
+		    alertLink("Give This Link To Your Friend", msg, true);
+  			});
+        });
+ socket.on('alertLink', function(msg){
+ 	console.log('2');
+    alertLink("Give This Link To Your Friend", msg, true);
+  });
+
+
+</script>
+<div>
+		<center>Room</center>
+</div>
+<br><br>
+<center>
+		<br>
+		<p> Welcome to the room </p>
+</div>
+</center>
