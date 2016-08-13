@@ -15,7 +15,7 @@ app.set('views', __dirname + '/views');
 app.get( '/', function(req, res) {
 	res.render('arena');
 });
-app.get( '/create/random', function(req, res)
+app.get( '/create/room', function(req, res)
 {
 	res.render('room');
 });
