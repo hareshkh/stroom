@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/util/css/room.css">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="/js/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="/util/css/sweetalert.css">
+  <link rel="stylesheet" type="text/css" href="/css/gamePage.css"/>
+<div id = "topper1"></div>
+<br>
+<div id = "homeWrapper">
+  <a href = "/" style = "color:white;">
+    Home
+  </a>
+  <button id="drawButton">Request Draw</button>
+</div>
+<div id = "mid">
+
+
+  <div style = "width:50%;float:left;heght:400px;">
+        <span style = "float:right;margin-right:2%;">
+          <canvas id="canvas" width="400" height="400"></canvas>
+      </span>
+    </div>
+   <div class = "right">
+      <span style = "float:left;margin-left:2%;position: relative;top: 50%;transform: translateY(-50%);width:400px;height:400px;">
+         <div id = "rcorners1">
+          <div>
+            <div style = "width:50%;float:left;height:50px;">
+              <img src = "/util/images/5.png">
+            </div>
+            <div style = "width:50%;float:right;height:80px;vertical-align: middle;display: flex;align-items: center;">
+              <span id = "whiteArea" style = "float:left;margin-left:15px;margin-bottom:20px;"><img src="/util/images/loading.svg" width="64" height="64" /></span><br>
+            </div>
+          </div>
+          <div>
+            <div style = "width:50%;float:left;height:80px;">
+              <img src = "/util/images/_5.png">
+            </div>
+            <div style = "width:50%;float:right;height:80px;vertical-align: middle;display: flex;align-items: center;color:black;">
+              <span id = "blackArea" style = "float:left;margin-left:15px;margin-bottom:80px;"></span><br>
+            </div>
+          </div>
+         </div>
+         <div id = "rcorners2" style="overflow-y: scroll;">
+            <span id = "leftMove" style = "margin-left:4%;">
+            </span>
+           </div>
+      </span>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/imageLoader.js"></script>
+<script src="/js/game.js"></script>
+<script src="/js/room.js"></script>
+<script src="/js/clipboard.min.js"></script>
