@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+	<script>
+		var p;
+		SC.initialize({
+		  client_id: '8a73a4efdb1f7a965c562f75716551ee'
+		});
+
+		SC.stream('/tracks/235152782').then(function(player){
+			p= player;
+			p.play();
+		});
+
+		function f() {
+			p.seek(p.currentTime()+10000);
+		}
+	</script>
+</head>
+<body>
+	<button onclick="f()">Seek</button>
+</body>
+</html>
