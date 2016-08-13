@@ -1,0 +1,26 @@
+{
+  "name": "stroom",
+  "version": "0.0.1",
+  "description": "A stream based music player ",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.14.0",
+    "socket.io": "~1.3.5",
+    "ejs": "^2.3.3",
+    "express-ejs-layouts": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hareshkh/stroom.git"
+  },
+  "author": "Dracarys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hareshkh/stroom/issues"
+  },
+  "homepage": "https://github.com/hareshkh/stroom#readme"
+}
