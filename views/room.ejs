@@ -43,7 +43,7 @@ function sync() {
   p.seek(Math.abs(now.getTime() - starttime.getTime()));
 }
 setInterval(function(){
-  document.getElementById('currpos').innerHTML=p.currentTime();
+  document.getElementById('currpos').innerHTML=Math.floor(p.currentTime()/1000);
 }, 1000);
 </script>
 <div>
