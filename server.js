@@ -27,12 +27,14 @@ app.get( '/', function(req, res) {
 app.get( '/create/room', function(req, res) {
 	res.render('room');
 });
+app.get( '/join/room', function(req, res) {
+    res.render('joiner');
+});
 app.get('/room/:room', function (req, res)
 {   
     res.render('room');
 });
-var playerInstances = {};
-
+var playerInstances = "";
 io.on('connection',function(socket){
     console.log(Room.isStartTime);
 	console.log("user connected");
@@ -50,13 +52,15 @@ io.on('connection',function(socket){
         console.log(Room.startTime);
         socket.emit("start",Room.startTime);
     });
-    if (socket.handshake.headers.referer.split('/')[4] == 'room')
+    socket.emit("roomAll",playerInstances);
+    if (socket.handshake.headers.referer.split('/')[3] == 'create')
     {
         if(socket.handshake.headers.referer.split('/')[5] == undefined)
             {
                 room = Room.allocateFirst(socket,myRoom);
                 socket.emit('alertLink',baseUrl+"/room/"+myRoom);
-                console.log("room allocated");  
+                playerInstances = baseUrl+"/room/"+myRoom;
+                console.log("room allocated");
             }
     }
     else if (socket.handshake.headers.referer.split('/')[3] == 'room') {
