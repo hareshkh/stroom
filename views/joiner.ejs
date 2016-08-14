@@ -2,11 +2,16 @@
 var socket = io();
 socket.on('roomAll', function(msg){
 	console.log("joiner_msg"+msg);
-	var ul = document.getElementById("roomslink");
-    var li = document.createElement("li");
-    li.appendChild(document.createTextNode(msg));
-    ul.appendChild(li);
+	var res = msg.split(" ");
+
+	for (i=1;i<res.length;i++)
+	{	
+		var ul = document.getElementById("roomslink");
+    	var li = document.createElement("li");
+    	li.appendChild(document.createTextNode(res[i]));
+    	ul.appendChild(li);
+    }
 });
 </script>
 <p>Current Active room</p>
-<ul id="roomslink"></ul>
+<ol id="roomslink"></ul>

@@ -59,7 +59,7 @@ io.on('connection',function(socket){
             {
                 room = Room.allocateFirst(socket,myRoom);
                 socket.emit('alertLink',baseUrl+"/room/"+myRoom);
-                playerInstances = baseUrl+"/room/"+myRoom;
+                playerInstances = playerInstances + " " + baseUrl+"/room/"+myRoom;
                 console.log("room allocated");
             }
     }
