@@ -44,6 +44,7 @@ io.on('connection',function(socket){
     socket.on('startSetter',function(msg){
         console.log("socket recieved");
         if(!Room.isStartTime){
+            Room.isStartTime = true;
             Room.startTime = msg;
         }
         console.log(Room.startTime);
