@@ -46,14 +46,14 @@ setInterval(function(){
   document.getElementById('currpos').innerHTML=Math.floor(p.currentTime()/1000);
 }, 1000);
 </script>
-<div>
-		<center>Room</center>
+<div><h1>
+		<center>Room</center></h1>
 </div>
 <br><br>
 <center>
-	  <button id='play' onclick="play()">Play</button>
-  		<button id='sync' onclick="sync()">Sync</button>
-  		<button id='pause' onclick="pause()">Pause</button>
+	   <button class="button" id='play' onclick="play()">Play</button>
+  		<button class="button" id='sync' onclick="sync()">Sync</button>
+  		<button class="button" id='pause' onclick="pause()">Pause</button>
 		<br>
 		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
 		<p id="link"></p>
