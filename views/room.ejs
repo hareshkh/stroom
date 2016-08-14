@@ -23,8 +23,8 @@ SC.stream('/tracks/235152782').then(function(player){
 });
 socket.on('start',function(msg) {
     console.log("msg:"+msg);
-    starttime = msg;
-    console.log(starttime);
+    starttime = new Date(msg);
+    console.log("start:"+starttime);
     p.play();
     p.on('buffering_end',function() {
     sync();
@@ -39,7 +39,7 @@ function pause() {
   p.pause();
 }
 function sync() {
-  var now = ts.now();
+  var now = new Date(ts.now());
   p.seek(Math.abs(now.getTime() - starttime.getTime()));
 }
 </script>

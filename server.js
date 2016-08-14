@@ -46,6 +46,7 @@ io.on('connection',function(socket){
         if(!Room.isStartTime){
             Room.startTime = msg;
         }
+        console.log(Room.startTime);
         socket.emit("start",Room.startTime);
     });
     if (socket.handshake.headers.referer.split('/')[4] == 'room')
