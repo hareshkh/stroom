@@ -60,7 +60,6 @@ io.on('connection',function(socket){
     else if (socket.handshake.headers.referer.split('/')[3] == 'room') {
                 console.log("join my room,Beaches");    
                 room = Room.allocateOther(socket,socket.handshake.headers.referer.split('/')[4]);
-                socket.emit("players",[room.playersHandle[0],room.playersHandle[1]]);
     }
     else {
         console.log(socket.handshake.headers.referer);

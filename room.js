@@ -1,6 +1,5 @@
 function Room(name) {
   this.name = name;
-  this.active = false;
   this.playersHandle = {};
   this.players = {};
   this.isstartTime = false;
@@ -13,7 +12,7 @@ Room.allocateFirst = function(socket, id) {
       rooms[id] = new Room (id);
       var room = rooms[id];
       room.name = id;
-      socket.join(room.name);
+      socket.join(id);
       socket.room = room;
       return room;
 };
@@ -26,9 +25,8 @@ Room.allocateOther = function(socket, id) {
        return ;
     }
     var room = rooms[id];
-    socket.join(room.name);
+    socket.join(id);
     socket.room= room;
-    room.active = true;
     return room;
 };
 module.exports = Room;

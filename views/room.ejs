@@ -21,20 +21,19 @@ SC.initialize({
 SC.stream('/tracks/235152782').then(function(player){
   p= player;
 });
-
+socket.on('start',function(msg) {
+    console.log("msg:"+msg);
+    starttime = msg;
+    console.log(starttime);
+    p.play();
+    p.on('buffering_end',function() {
+    sync();
+  });
+});
 function play() {
   var now = new Date(ts.now());
   console.log(now);
-  socket.emit('startsetter',now);
-  socket.on('start',function(msg) {
-    console.log("msg:"+msg);
-    starttime = msg;
-  });
-  console.log(starttime);
-  p.play();
-  p.on('buffering_end',function() {
-    sync();
-  })
+  socket.emit('startSetter',now);
 }
 function pause() {
   p.pause();
