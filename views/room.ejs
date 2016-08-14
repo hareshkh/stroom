@@ -18,7 +18,7 @@ SC.initialize({
   client_id: '8a73a4efdb1f7a965c562f75716551ee'
 });
 
-SC.stream('/tracks/235152782').then(function(player){
+SC.stream('/tracks/238211095').then(function(player){
   p= player;
 });
 socket.on('start',function(msg) {
@@ -42,6 +42,9 @@ function sync() {
   var now = new Date(ts.now());
   p.seek(Math.abs(now.getTime() - starttime.getTime()));
 }
+setInterval(function(){
+  document.getElementById('currpos').innerHTML=p.currentTime();
+}, 1000);
 </script>
 <div>
 		<center>Room</center>
@@ -54,5 +57,6 @@ function sync() {
 		<br>
 		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
 		<p id="link"></p>
+    <p id = "currpos"></p>
 </div>
 </center>
