@@ -15,6 +15,10 @@ body {
 	font-size: 12vw;
 	margin-bottom: 10vw;
 }
+#sitetitle1 {
+	color: rgb(123,143,200);
+	font-size: 6vw;
+}
 .button {
 	height: auto;
 	width: 20vw;
