@@ -27,7 +27,7 @@ socket.on('start',function(msg) {
     console.log("start:"+starttime);
     p.play();
     p.on('buffering_end',function() {
-    sync();
+      sync();
   });
 });
 function play() {
@@ -40,7 +40,7 @@ function pause() {
 }
 function sync() {
   var now = new Date(ts.now());
-  p.seek(Math.abs(now.getTime() - starttime.getTime()));
+  p.seek(Math.floor((now.getTime() - starttime.getTime())/1000)*1000);
 }
 setInterval(function(){
   document.getElementById('currpos').innerHTML=Math.floor(p.currentTime()/1000);
