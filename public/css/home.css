@@ -12,16 +12,16 @@ body {
 }
 #sitetitle {
 	color: rgb(123,143,200);
-	font-size: 15vw;
+	font-size: 12vw;
 	margin-bottom: 10vw;
 }
 .button {
 	height: auto;
-	width: 40vw;
-	font-size: 5vw;
+	width: 20vw;
+	font-size: 2vw;
 	border: solid;
 	border-color: rgb(123,143,200);
-	border-radius: 50%;
+	border-radius: 25px;
 	color: rgb(123,143,200);
 }
 a {
