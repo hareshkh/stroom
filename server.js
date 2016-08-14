@@ -4,7 +4,6 @@ var baseUrl = config.base_url;
 var express = require('express');
 var timesyncServer = require('timesync/server');
 var app = express();
-var baseUrl = "172.23.0.131:3000";
 var expressLayouts = require('express-ejs-layouts');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
