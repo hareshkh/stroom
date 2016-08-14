@@ -2,6 +2,7 @@ var Room = require('./room');
 var config = require('./config/config.json');
 var baseUrl = config.base_url;
 var express = require('express');
+var timesyncServer = require('timesync/server');
 var app = express();
 var baseUrl = "172.23.0.131:3000";
 var expressLayouts = require('express-ejs-layouts');
@@ -18,6 +19,7 @@ app.use(expressLayouts);
 app.set('layout'); 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+app.use('/timesync', timesyncServer.requestHandler);
 app.get( '/', function(req, res) {
 	res.render('index');
 });
@@ -32,13 +34,20 @@ app.get('/room/:room', function (req, res)
 var playerInstances = {};
 
 io.on('connection',function(socket){
+    console.log(Room.isStartTime);
 	console.log("user connected");
     var x = Math.floor((Math.random() * 50));
     var y = Math.floor((Math.random() * 50));
 	var myRoom = links[x]+links[y];
 	var room;
 	console.log(socket.handshake.headers.referer);
-
+    socket.on('startSetter',function(msg){
+        console.log("socket recieved");
+        if(!Room.isStartTime){
+            Room.startTime = msg;
+        }
+        socket.emit("start",Room.startTime);
+    });
     if (socket.handshake.headers.referer.split('/')[4] == 'room')
     {
         if(socket.handshake.headers.referer.split('/')[5] == undefined)
@@ -54,6 +63,6 @@ io.on('connection',function(socket){
                 socket.emit("players",[room.playersHandle[0],room.playersHandle[1]]);
     }
     else {
-        console.log("Such link,much wow");
+        console.log(socket.handshake.headers.referer);
     }
 });

@@ -4,6 +4,8 @@ function Room(name) {
   this.active = false;
   this.playersHandle = {};
   this.players = {};
+  this.isstartTime = false;
+  this.startTime;
 }
 Room.rooms = {};
 Room.allocateFirst = function(socket, id) {

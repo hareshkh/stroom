@@ -5,11 +5,53 @@ socket.on('alertLink', function(msg){
 	document.getElementById('link').innerHTML = msg;
 });
 </script>
+<script>
+var ts = timesync.create({
+  server: '/timesync',
+  interval: 10000
+});
+var socket = io();
+var starttime;
+
+var p;
+SC.initialize({
+  client_id: '8a73a4efdb1f7a965c562f75716551ee'
+});
+
+SC.stream('/tracks/235152782').then(function(player){
+  p= player;
+});
+
+function play() {
+  var now = new Date(ts.now());
+  console.log(now);
+  socket.emit('startsetter',now);
+  socket.on('start',function(msg) {
+    console.log("msg:"+msg);
+    starttime = msg;
+  });
+  console.log(starttime);
+  p.play();
+  p.on('buffering_end',function() {
+    sync();
+  })
+}
+function pause() {
+  p.pause();
+}
+function sync() {
+  var now = ts.now();
+  p.seek(Math.abs(now.getTime() - starttime.getTime()));
+}
+</script>
 <div>
 		<center>Room</center>
 </div>
 <br><br>
 <center>
+	  <button id='play' onclick="play()">Play</button>
+  		<button id='sync' onclick="sync()">Sync</button>
+  		<button id='pause' onclick="pause()">Pause</button>
 		<br>
 		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
 		<p id="link"></p>
