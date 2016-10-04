@@ -12,6 +12,7 @@ We created a server in **Node.JS** along with **Express**, **ejs** and **socket.
  - Putting up dedicated servers online
  - Creating fun virtual rooms which not just play music but can have various games, activities etc. too
  - Making user capable of sending songs to server and server queuing up music as a normal music playlist does.
+ - Creating localised room searching, that will help you to find friends romm quicker
 
 ## Contributors
  - [Paras Chetal](https://github.com/paraschetal)
