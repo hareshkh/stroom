@@ -1,17 +1,19 @@
 <script type="text/javascript">	
 var socket = io();
-socket.on('roomAll', function(msg){
-	console.log("joiner_msg"+msg);
+socket.on('roomAll', function(msg) {
+	console.log("joiner_msg" + msg);
 	var res = msg.split(" ");
 
-	for (i=1;i<res.length;i++)
-	{	
+	for (i = 1; i < res.length; i++) {	
 		var ul = document.getElementById("roomslink");
     	var li = document.createElement("li");
-    	li.appendChild(document.createTextNode(res[i]));
+    	var a = document.createElement("a");
+    	a.appendChild(document.createTextNode(res[i]));
+    	a.setAttribute("href", res[i]);
+    	li.appendChild(a);
     	ul.appendChild(li);
     }
 });
 </script>
-<p>Current Active room</p>
-<ol id="roomslink"></ul>
+<p>Current active rooms : </p>
+<ul id = "roomslink"></ul>
