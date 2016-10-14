@@ -8,11 +8,13 @@ var express = require('express');
 var app = express();
 var expressLayouts = require('express-ejs-layouts');
 
+var tracks = require('./tracks.json');
+
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 app.set('port',(process.env.PORT||3000));
 http.listen (app.get('port'),function() {
-  console.log("Listening to port number "+app.get('port'));
+  console.log("Listening to port number " + app.get('port'));
 });
 
 var links = ["demoal","specry","credry","phonal","tactly","nating","fracor","medish","logive","duceur","tactly",
@@ -49,7 +51,7 @@ io.on('connection', function(socket) {
     console.log(Room.isStartTime);
 	console.log("User Connected");
 
-    var x = Math.floor((Math.random() * 50));
+    var x = Math.floor(Math.random() * 50);
 	var myRoom = links[x];
 	var room;
 
@@ -68,7 +70,10 @@ io.on('connection', function(socket) {
     if (socket.handshake.headers.referer.split('/')[3] == 'create') {
         if(socket.handshake.headers.referer.split('/')[5] == undefined) {
                 room = Room.allocateFirst(socket,myRoom);
-                socket.emit('alertLink', baseUrl+"/room/"+myRoom);
+                var selector = Math.floor(Math.random() * tracks.count);
+                console.log(tracks.ids[selector]);
+                socket.emit('songId', String(tracks.ids[selector]));
+                socket.emit('alertLink', baseUrl + "/room/" + myRoom);
                 playerInstances = playerInstances + " " + baseUrl + "/room/" + myRoom;
                 console.log("New room allocated");
             }

@@ -1,61 +1,70 @@
-<script type="text/javascript">	
+<script type="text/javascript"> 
 var socket = io();
-socket.on('alertLink', function(msg){
-	console.log(msg);
-	document.getElementById('link').innerHTML = msg;
+socket.on('alertLink', function(msg) {
+    document.getElementById('link').innerHTML = msg;
 });
 </script>
+
 <script>
 var ts = timesync.create({
-  server: '/timesync',
-  interval: 10000
+    server: '/timesync',
+    interval: 10000
 });
-var socket = io();
+
 var starttime;
 
 var p;
-SC.initialize({
-  client_id: '8a73a4efdb1f7a965c562f75716551ee'
+var track;
+socket.on('songId', function(msg) {
+    track = msg;
+    console.log (track);
+    SC.initialize({
+        client_id: '8a73a4efdb1f7a965c562f75716551ee'
+    });
+
+    SC.stream(track).then(function(player) {
+        p = player;
+    });
+
+    setInterval(function() {
+        document.getElementById('currpos').innerHTML = Math.floor(p.currentTime() / 1000);
+    }, 1000);
 });
 
-SC.stream('/tracks/238211095').then(function(player){
-  p= player;
-});
-socket.on('start',function(msg) {
-    console.log("msg:"+msg);
+socket.on('start', function(msg) {
+    console.log("msg:" + msg);
     starttime = new Date(msg);
-    console.log("start:"+starttime);
+    console.log("start:" + starttime);
     p.play();
-    p.on('buffering_end',function() {
-      sync();
-  });
+    p.on('buffering_end', function() {
+        sync();
+    });
 });
+
 function play() {
-  var now = new Date(ts.now());
-  console.log(now);
-  socket.emit('startSetter',now);
+    var now = new Date(ts.now());
+    console.log(now);
+    socket.emit('startSetter', now);
 }
+
 function pause() {
-  p.pause();
+    p.pause();
 }
+
 function sync() {
-  var now = new Date(ts.now());
-  p.seek(Math.floor((now.getTime() - starttime.getTime())/1000)*1000);
+    var now = new Date(ts.now());
+    p.seek(Math.floor((now.getTime() - starttime.getTime())/1000)*1000);
 }
-setInterval(function(){
-  document.getElementById('currpos').innerHTML=Math.floor(p.currentTime()/1000);
-}, 1000);
 </script>
-<div id = "sitetitle1"><center>Room</center>
-</div>
+
+<div id = "sitetitle1"><center>Room</center></div>
 <br><br>
 <center>
-	   <button class="button" id='play' onclick="play()">Play</button>
-  		<button class="button" id='sync' onclick="sync()">Sync</button>
-  		<button class="button" id='pause' onclick="pause()">Pause</button>
-		<br>
-		<p> Welcome to the room Copy the link and give it to your friends :) </p><br>
-		<p id="link"></p>
+    <button class="button" id='play' onclick="play()">Play</button>
+    <button class="button" id='sync' onclick="sync()">Sync</button>
+    <button class="button" id='pause' onclick="pause()">Pause</button><br>
+    <p> Welcome to the room Copy the link and give it to your friends :) </p><br>
+    <p id="link"></p>
     <p id = "currpos"></p>
 </div>
 </center>
