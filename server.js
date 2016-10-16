@@ -42,7 +42,7 @@ app.get('/create/room', function(req, res) {
 app.get('/join/room', function(req, res) {
     res.render('joiner');
 });
-app.get('/room/:room', function (req, res) {   
+app.get('/room/:room', function (req, res) {
     res.render('room');
 });
 
@@ -55,7 +55,6 @@ io.on('connection', function(socket) {
 	var myRoom = links[x];
 	var room;
 
-	// console.log(socket.handshake.headers.referer);
     socket.on('startSetter', function(msg) {
         console.log("Socket recieved");
         if (!Room.isStartTime) {
@@ -69,17 +68,19 @@ io.on('connection', function(socket) {
     socket.emit("roomAll", playerInstances);
     if (socket.handshake.headers.referer.split('/')[3] == 'create') {
         if(socket.handshake.headers.referer.split('/')[5] == undefined) {
-                room = Room.allocateFirst(socket,myRoom);
-                var selector = Math.floor(Math.random() * tracks.count);
-                console.log(tracks.ids[selector]);
-                socket.emit('songId', String(tracks.ids[selector]));
-                socket.emit('alertLink', baseUrl + "/room/" + myRoom);
-                playerInstances = playerInstances + " " + baseUrl + "/room/" + myRoom;
-                console.log("New room allocated");
-            }
+            room = Room.allocateFirst(socket,myRoom);
+            var selector = Math.floor(Math.random() * tracks.count);
+            room.selectedTrack = String(tracks.ids[selector]);
+            console.log("Track set = " + tracks.ids[selector]);
+            socket.emit('songId', room.selectedTrack);
+            socket.emit('alertLink', baseUrl + "/room/" + myRoom);
+            playerInstances = playerInstances + " " + baseUrl + "/room/" + myRoom;
+            console.log("New room allocated");
+        }
     } else if (socket.handshake.headers.referer.split('/')[3] == 'room') {
-                console.log("Room '" + socket.handshake.headers.referer.split('/')[4] + "' joined" );    
-                room = Room.allocateOther(socket, socket.handshake.headers.referer.split('/')[4]);
+        room = Room.allocateOther(socket, socket.handshake.headers.referer.split('/')[4]);
+        socket.emit('songId', room.selectedTrack);
+        console.log("Room '" + socket.handshake.headers.referer.split('/')[4] + "' joined" );
     } else {
         console.log(socket.handshake.headers.referer);
     }

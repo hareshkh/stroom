@@ -4,6 +4,7 @@ function Room(name) {
     this.players = {};
     this.isstartTime = false;
     this.startTime;
+    this.selectedTrack = "";
 }
 
 Room.rooms = {};
