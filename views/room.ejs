@@ -24,11 +24,8 @@ socket.on('songId', function(msg) {
 
     SC.stream(track).then(function(player) {
         p = player;
+        setTime();
     });
-
-    setInterval(function() {
-        document.getElementById('currpos').innerHTML = Math.floor(p.currentTime() / 1000);
-    }, 1000);
 });
 
 socket.on('start', function(msg) {
@@ -40,6 +37,12 @@ socket.on('start', function(msg) {
         sync();
     });
 });
+
+function setTime() {
+    setInterval(function() {
+        document.getElementById('currpos').innerHTML = Math.floor(p.currentTime() / 1000);
+    }, 1000);
+}
 
 function play() {
     var now = new Date(ts.now());
